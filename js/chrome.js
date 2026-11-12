@@ -30,21 +30,9 @@ export function initLinks() {
     }
   }
 
-  // Resume: only download if the file actually exists, otherwise explain.
+  // Resume: opens the PDF in a new tab to read (the browser's viewer has its own download button)
   const cv = $('#q-resume');
-  if (cv) {
-    cv.href = RESUME_URL;
-    let checked = null;
-    cv.addEventListener('click', async e => {
-      if (checked === true) return;
-      e.preventDefault();
-      if (checked === null) {
-        try { checked = (await fetch(RESUME_URL, { method: 'HEAD' })).ok; } catch { checked = false; }
-      }
-      if (checked) cv.click();
-      else say('Resume coming soon');
-    });
-  }
+  if (cv) cv.href = RESUME_URL;
 
   // "Contact me" / "Get in touch": email first, then LinkedIn
   $$('[data-contact]').forEach(contact => {
