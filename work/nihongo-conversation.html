@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nihongo Nepal Conversation Case Study</title>
+<meta name="description" content="Case study: designing an AI role-play partner that lets Nihongo Nepal learners practise speaking Japanese out loud.">
+<meta property="og:title" content="Nihongo Nepal: Conversation Practice with an AI Partner">
+<meta property="og:description" content="A UI/UX case study by Priyanka Kadel.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+
+<div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+<!-- ============ Top bar: logo mark + quick links ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="../index.html" aria-label="Priyanka Kadel, back to home" title="Home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#9BAD50"/>
+        <circle cx="24" cy="24" r="23" fill="url(#markShine)"/>
+        <g class="mark-ring"><circle cx="24" cy="24" r="18.5" fill="none" stroke="#F7F6F2" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 2.6" stroke-linecap="round"/></g>
+        <text x="24" y="29.5" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-weight="700" font-size="15.5" letter-spacing="-.5" fill="#393027">PK</text>
+        <defs>
+          <radialGradient id="markShine" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+            <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="quick" id="quick">
+      <a class="q-in" id="q-linkedin" href="#" target="_blank" rel="noopener" aria-label="Priyanka on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.69h-4v-5.04c0-1.2-.02-2.75-1.73-2.75-1.74 0-2 1.31-2 2.66v5.13h-4v-11Z"/></svg>
+      </a>
+      <a class="q-cv" id="q-resume" href="../assets/resume.pdf" download aria-label="Download resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span class="q-label">Resume</span>
+      </a>
+      <span class="toast" id="toast" role="status" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="case">
+
+  <!-- ============ Hero ============ -->
+  <header class="case-hero">
+    <a class="back-link" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1 class="case-title">Nihongo Nepal: Conversation Practice with an <em>AI Partner</em></h1>
+    <ul class="tags" aria-label="Project type">
+      <li>AI UX</li>
+      <li>Voice interaction</li>
+      <li>Mobile</li>
+    </ul>
+    <p class="case-read">Reading time: ~4 min (889 words)</p>
+  </header>
+
+  <figure class="case-cover">
+    <img src="../assets/work/nihongo-conversation-cover.webp" width="2000" height="2199" decoding="async" fetchpriority="high"
+         alt="Two phone screens of the Nihongo Nepal conversation practice: a scene illustration, a Nepali brief, an AI message in Japanese, the listening state with a red microphone, and yellow hint cards">
+  </figure>
+
+  <div class="case-layout">
+    <nav class="case-toc" aria-label="On this page">
+      <p class="eyebrow">On this page</p>
+      <ol>
+        <li><a href="#challenge">The challenge</a></li>
+        <li><a href="#who">Who it affected</a></li>
+        <li><a href="#why">Why it mattered</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#improved">What improved</a></li>
+        <li><a href="#learned">What I learned</a></li>
+      </ol>
+    </nav>
+
+    <article class="case-body">
+      <p class="case-lead">Conversation (<span lang="ne">कुराकानी अभ्यास</span>, “conversation practice”) is an AI role-play partner inside Nihongo Nepal, a JLPT and JFT exam-prep app. Learners step into a realistic scene and speak Japanese out loud with an AI character. I designed the experience end to end, through to implementation QA. That covered the scenario structure, conversation screen, voice input states, hint system and bilingual message design.</p>
+
+      <section id="challenge" class="reveal">
+        <h2>The challenge</h2>
+        <p><strong>What was broken.</strong> Nihongo Nepal’s lessons, quizzes and mock tests built reading and listening skills, but nothing in the app let learners practise speaking.</p>
+        <div class="callout"><p><strong>The problem.</strong> Learners knew Japanese words and grammar but had nowhere low-pressure to use them in a real conversation, so speaking stayed their weakest skill.</p></div>
+      </section>
+
+      <section id="who" class="reveal">
+        <h2>Who it affected</h2>
+        <p>Learners heading to Japan for work or study, who need to speak as well as read. Most of them:</p>
+        <ul class="points">
+          <li>have no practice partner, because classmates share the same mistakes and native speakers are rare in Nepal;</li>
+          <li>freeze when they don’t know what to say, especially those with low confidence;</li>
+          <li>study on commutes and in short sessions;</li>
+          <li>read Nepali faster than Japanese.</li>
+        </ul>
+      </section>
+
+      <section id="why" class="reveal">
+        <h2>Why it mattered</h2>
+        <p>Memorised phrases don’t transfer to a real moment, like knocking on a neighbour’s door. Without speaking practice, learners arrive in Japan able to pass a test but not to hold a conversation. Research into speaking anxiety and language learning, checked against Nihongo Nepal’s behavioural persona dimensions, showed what the feature needed:</p>
+        <ul class="points">
+          <li><strong>Speaking anxiety is the main barrier.</strong> Help had to be one tap away, but hidden until asked for.</li>
+          <li><strong>Context makes language stick.</strong> Every conversation needed a concrete scene and goal.</li>
+          <li><strong>Language level matters.</strong> Instructions and translations should be in Nepali, with Japanese only where it’s being practised.</li>
+          <li><strong>Open-ended AI chat overwhelms beginners.</strong> Scripted goals keep it achievable.</li>
+          <li><strong>Short sessions call for short scenarios.</strong> Each scenario had to fit a few minutes, with voice-first input.</li>
+        </ul>
+      </section>
+
+      <section id="changed" class="reveal">
+        <h2>What changed</h2>
+        <p>The flow became scene, listen, respond, get help if needed, continue.</p>
+
+        <h3>Context before conversation.</h3>
+        <p>Before any Japanese appears, learners see an illustration and a Nepali brief. In one scenario, it’s evening and you’re moving into a new room. Your neighbour Lakshmi comes over to help, and you introduce yourselves: your name, that you’re Nepali, and that you’re a student too.</p>
+        <ul class="points">
+          <li><strong>The brief doubles as a checklist.</strong> Its three goals tell learners exactly what to say.</li>
+          <li><strong>The illustration sets the tone.</strong> A friendly scene signals the register without any grammar explanation.</li>
+          <li><strong>The brief stays pinned.</strong> It remains visible during the chat, so learners can glance back at their goals.</li>
+        </ul>
+
+        <h3>Japanese first, Nepali as support.</h3>
+        <p>Each AI message shows the character’s name in katakana, the line in Japanese, a speaker icon to replay the audio, and a lighter Nepali translation underneath. The Japanese is large and primary; the translation is there when needed but never competes with it.</p>
+
+        <h3>Hints on demand, at two levels.</h3>
+        <p>A hint link (<span lang="ne">संकेत हेर्नुहोस्</span>, “see hint”) sits under the AI’s message.</p>
+        <ul class="points">
+          <li><strong>Hidden by default.</strong> Learners try first and reach for help only when stuck.</li>
+          <li><strong>Two levels of answer.</strong> Tapping the link reveals a full sentence (<span lang="ja">わたしは ラムです</span>, “I am Ram”) and a short, natural form (<span lang="ja">ラムです</span>), each with audio. Together they teach that real Japanese drops what’s already understood.</li>
+          <li><strong>Visually distinct.</strong> Hint cards are yellow, not blue, so they’re never mistaken for something that was actually said.</li>
+        </ul>
+
+        <h3>Voice input with unmistakable states.</h3>
+        <ol class="steps">
+          <li><strong>Idle:</strong> a large blue microphone button.</li>
+          <li><strong>Listening:</strong> the button turns red with a glow, and “listening…” (<span lang="ne">सुनिँदै छ…</span>) appears above it.</li>
+          <li><strong>After speaking:</strong> the learner’s words appear in Japanese, so they can check themselves before the AI replies.</li>
+        </ol>
+
+        <h3>AI and voice edge cases considered.</h3>
+        <dl class="dims">
+          <div><dt>Mismatched script</dt><dd>Speech recognition can return kanji (<span lang="ja">私</span>) when beginners know the hiragana (<span lang="ja">わたし</span>).</dd></div>
+          <div><dt>More than one right answer</dt><dd>The AI must accept answers that differ from the hint, such as the learner’s own name in place of “Ram”.</dd></div>
+          <div><dt>Silence</dt><dd>It needs a gentle nudge, not an error.</dd></div>
+          <div><dt>Noise and accents</dt><dd>Commuters practise in noisy places, and Nepali-accented Japanese may be misheard.</dd></div>
+          <div><dt>Staying on script</dt><dd>The scenario’s goals keep the AI within a beginner’s level.</dd></div>
+          <div><dt>Response delay</dt><dd>Waiting breaks the feel of a real conversation.</dd></div>
+          <div><dt>Microphone permission</dt><dd>The app must explain why it needs microphone access.</dd></div>
+        </dl>
+      </section>
+
+      <section id="improved" class="reveal">
+        <h2>What improved</h2>
+        <ul class="outcomes">
+          <li><strong>Learners finally have someone to speak with.</strong> The AI gives them a safe, low-pressure place to speak Japanese out loud before they need to in real life.</li>
+          <li><strong>Fear of freezing is lower.</strong> Hints are always one tap away, but learners still try first.</li>
+          <li><strong>Practice now has context.</strong> Learners rehearse real moments with clear goals, rather than reciting isolated phrases.</li>
+          <li><strong>Pronunciation is easier to learn.</strong> Audio plays on every line and hint, as often as the learner wants.</li>
+          <li><strong>There’s no doubt about what the app is doing.</strong> Clear voice states show whether it is listening, thinking or waiting for the learner.</li>
+        </ul>
+      </section>
+
+      <section id="learned" class="learned reveal">
+        <h2>What I learned</h2>
+        <p>With AI, structure is the safety net: a clear scene and clear goals made an open-ended AI feel safe for beginners. Help should wait to be asked. And voice needs louder feedback than text.</p>
+      </section>
+
+      <div class="case-end">
+        <a class="btn primary" href="../index.html#work"><span class="arr" aria-hidden="true">←</span>&nbsp;Back to work</a>
+        <a class="btn secondary" href="../index.html#about">About me</a>
+      </div>
+      <a class="case-next" href="watobu-ai-search.html">
+        <span class="eyebrow">Next case study</span>
+        <span class="case-next-title">Watobu: Designing AI Search for Product References <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </article>
+  </div>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Have a project or idea in <em>mind</em>?</h2>
+    <p class="wip-text">I’m always open to conversations, collaborations and opportunities to learn and contribute.</p>
+    <div class="actions">
+      <a class="btn primary" href="#" data-contact>Get in touch</a>
+    </div>
+    <p class="contact-details" hidden>
+      <span id="contact-email" hidden>Email: <a></a></span>
+      <span id="contact-linkedin" hidden>LinkedIn: <a target="_blank" rel="noopener">View profile</a></span>
+    </p>
+  </section>
+</main>
+
+<!-- ============ Floating bottom nav ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <span class="nav-hi" aria-hidden="true"></span>
+  <a href="../index.html" data-page="home">Home</a>
+  <a href="../index.html#work" data-page="work" aria-current="page">Work</a>
+  <a href="../index.html#about" data-page="about">About</a>
+</nav>
+
+<script type="module" src="../js/case.js"></script>
+</body>
+</html>

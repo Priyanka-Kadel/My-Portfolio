@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watobu AI Search Case Study</title>
+<meta name="description" content="Case study: designing AI Search for Watobu, a curated library of real-world SaaS feature flows.">
+<meta property="og:title" content="Watobu: Designing AI Search for Product References">
+<meta property="og:description" content="A UI/UX case study by Priyanka Kadel.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+
+<div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+<!-- ============ Top bar: logo mark + quick links ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="../index.html" aria-label="Priyanka Kadel, back to home" title="Home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#9BAD50"/>
+        <circle cx="24" cy="24" r="23" fill="url(#markShine)"/>
+        <g class="mark-ring"><circle cx="24" cy="24" r="18.5" fill="none" stroke="#F7F6F2" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 2.6" stroke-linecap="round"/></g>
+        <text x="24" y="29.5" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-weight="700" font-size="15.5" letter-spacing="-.5" fill="#393027">PK</text>
+        <defs>
+          <radialGradient id="markShine" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+            <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="quick" id="quick">
+      <a class="q-in" id="q-linkedin" href="#" target="_blank" rel="noopener" aria-label="Priyanka on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.69h-4v-5.04c0-1.2-.02-2.75-1.73-2.75-1.74 0-2 1.31-2 2.66v5.13h-4v-11Z"/></svg>
+      </a>
+      <a class="q-cv" id="q-resume" href="../assets/resume.pdf" download aria-label="Download resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span class="q-label">Resume</span>
+      </a>
+      <span class="toast" id="toast" role="status" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="case">
+
+  <!-- ============ Hero ============ -->
+  <header class="case-hero">
+    <a class="back-link" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1 class="case-title">Watobu: Designing <em>AI Search</em> for Product References</h1>
+    <ul class="tags" aria-label="Project type">
+      <li>AI UX</li>
+      <li>Product discovery</li>
+      <li>UX/UI design</li>
+    </ul>
+    <p class="case-read">Reading time: ~4 min (1,005 words)</p>
+  </header>
+
+  <figure class="case-cover">
+    <img src="../assets/work/watobu-ai-search-cover.webp" width="2000" height="1561" decoding="async" fetchpriority="high"
+         alt="Watobu screens: the Feature Spotlight page with the Copilot panel, and AI search results for “support desk UX enhancements” shown as real product flows">
+  </figure>
+
+  <div class="case-layout">
+    <nav class="case-toc" aria-label="On this page">
+      <p class="eyebrow">On this page</p>
+      <ol>
+        <li><a href="#challenge">The challenge</a></li>
+        <li><a href="#who">Who it affected</a></li>
+        <li><a href="#why">Why it mattered</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#improved">What improved</a></li>
+        <li><a href="#learned">What I learned</a></li>
+      </ol>
+    </nav>
+
+    <article class="case-body">
+      <p class="case-lead">Watobu is a curated library of real-world SaaS feature flows: actual UI screenshots mapped end to end across AI tools, CRMs, customer support, cloud telephony, email marketing, messaging and productivity apps. As a core contributor to AI Search, I worked on the feature end to end, from UX definition and research through design, handoff and design QA. I also built Watobu’s UX reference library of 40+ curated products, which informed the work.</p>
+
+      <section id="challenge" class="reveal">
+        <h2>The challenge</h2>
+        <p><strong>What was broken.</strong> Users could browse by app and industry, bookmark screens, build collections and import flows into Figma. But keyword search only worked if they already knew the app or the exact feature name. It had four limits:</p>
+        <dl class="dims">
+          <div><dt>Vocabulary mismatch</dt><dd>Users had to guess the words used in tags and titles. “Invite teammates” might be labelled “add members” or “workspace settings”.</dd></div>
+          <div><dt>App-first, not problem-first</dt><dd>Search assumed users knew which product to look at. Often they didn’t, which was why they came.</dd></div>
+          <div><dt>Too many weak matches</dt><dd>Broad keywords returned long lists to scan screen by screen.</dd></div>
+          <div><dt>No context</dt><dd>A matching screen without its surrounding flow is only half a reference.</dd></div>
+        </dl>
+        <div class="callout"><p><strong>The problem.</strong> Product teams know the design problem they’re solving but not where its best references live. They needed to describe the problem and get back relevant, comparable flows, without knowing app names or library tags.</p></div>
+      </section>
+
+      <section id="who" class="reveal">
+        <h2>Who it affected</h2>
+        <ul class="points">
+          <li><strong>Designers</strong> looking for patterns before designing a feature.</li>
+          <li><strong>Product managers</strong> comparing how competitors solved something before scoping it.</li>
+          <li><strong>Researchers</strong> gathering examples for competitive audits.</li>
+        </ul>
+        <p>All three typically need a handful of strong references fast, often right before a sprint or design review, and then need to save or share them. The library itself was affected too. With more than 500,000 screens across 8,000+ flows and 150+ apps, most of its depth was invisible to anyone who couldn’t name what they were looking for.</p>
+        <ul class="stats" aria-label="Library size">
+          <li><b>500,000+</b><span>screens</span></li>
+          <li><b>8,000+</b><span>flows</span></li>
+          <li><b>150+</b><span>apps</span></li>
+        </ul>
+      </section>
+
+      <section id="why" class="reveal">
+        <h2>Why it mattered</h2>
+        <p>Search is the front door to Watobu. If search fails, the library’s value never reaches the user. AI was a natural fit, because people think in problems (“an empty state for a dashboard with no data yet”) rather than in app names or tags, and language models can map that intent to screens even when the words don’t match.</p>
+        <p>Research into AI and conventional search showed what the experience had to get right:</p>
+        <ul class="points">
+          <li><strong>Trust depends on visible grounding.</strong> People trust AI results more when they can see what the results are based on. For Watobu, that meant showing real screens rather than summaries.</li>
+          <li><strong>Blank prompts intimidate.</strong> Users write better queries when they see examples of good input.</li>
+          <li><strong>AI is slower than keyword search.</strong> Narrated progress reduces the perceived wait.</li>
+          <li><strong>Refinement must be cheap.</strong> Users rarely get a query right the first time.</li>
+          <li><strong>Search habits are strong.</strong> People bring habits from Google: one prominent bar, recent searches and filters. AI Search had to feel like search first and reveal its intelligence second.</li>
+        </ul>
+      </section>
+
+      <section id="changed" class="reveal">
+        <h2>What changed</h2>
+
+        <h3>AI inside the existing search, not beside it.</h3>
+        <p>I explored three directions:</p>
+        <ol class="options">
+          <li><strong>A separate AI page.</strong> It made the AI obvious but split search in two.</li>
+          <li><strong>A chat panel.</strong> It made refinement natural but buried the screens, which are Watobu’s real value, under text.</li>
+          <li class="chosen"><strong>AI inside the existing search bar.</strong> This won. It kept one familiar entry point and kept results visual, at the lowest learning cost.</li>
+        </ol>
+
+        <p>The final experience follows one model: describe, review, refine, save.</p>
+        <ol class="steps">
+          <li>The search bar looks the same, but its placeholder now invites a description. When the bar is focused, suggested queries and recent searches teach by example.</li>
+          <li>After the user submits a query, it stays visible and editable.</li>
+          <li>While the AI works, staged status messages over skeleton results show progress.</li>
+          <li>Results lead with real screens, grouped by flow and app, each with a short note on why it matches. An AI summary above the results, or a flat grid, was rejected: the summary delayed the visuals, and the grid lost flow context.</li>
+          <li>Opening a result shows the full flow with the matched screen highlighted.</li>
+          <li>Follow-up suggestions and filters refine the results without starting over.</li>
+          <li>Users save results with the actions they already know: bookmark, add to collection, import to Figma.</li>
+        </ol>
+
+        <h3>Honest framing.</h3>
+        <p>Instead of promising “ask anything”, the experience scopes its promise to the library: describe a feature or flow you’re designing.</p>
+
+        <h3>Designed uncertain states.</h3>
+        <ul class="points">
+          <li>No results lead to suggestions, never to a blank page.</li>
+          <li>Partial matches are labelled as partial.</li>
+          <li>Vague queries get clarifying options.</li>
+          <li>Errors offer a one-tap retry that keeps the query.</li>
+        </ul>
+
+        <h3>Built with engineering constraints in mind.</h3>
+        <p>Response latency shaped the loading states. I documented every state, from idle and focus through processing, results, partial, empty and error, with triggers, transitions and copy. The specs also covered edge cases: very long or single-word queries, non-English input, out-of-scope queries, duplicate screens and failed AI responses.</p>
+      </section>
+
+      <section id="improved" class="reveal">
+        <h2>What improved</h2>
+        <ul class="outcomes">
+          <li><strong>No more guessing.</strong> Users no longer need to know app names or library tags. They describe the design problem instead.</li>
+          <li><strong>Results that are easier to trust.</strong> Every result is a real screen with a reason it matched, so the AI’s work is visible.</li>
+          <li><strong>Fewer dead ends.</strong> Empty, partial and failed searches all point to a next step.</li>
+          <li><strong>Faster to a useful reference.</strong> Grouping by flow and refining in place cut the scanning and retyping.</li>
+          <li><strong>Nothing new to learn.</strong> AI Search lives in the same bar and leads to the same pages users already knew.</li>
+        </ul>
+      </section>
+
+      <section id="learned" class="learned reveal">
+        <h2>What I learned</h2>
+        <p>The AI is the engine, not the interface. Users came for references, not for AI. Design the uncertain states first, because that’s where AI products earn or lose trust. And treat constraints as design material: latency and model reliability shaped this experience as much as research did.</p>
+      </section>
+
+      <div class="case-end">
+        <a class="btn primary" href="../index.html#work"><span class="arr" aria-hidden="true">←</span>&nbsp;Back to work</a>
+        <a class="btn secondary" href="../index.html#about">About me</a>
+      </div>
+      <a class="case-next" href="watobu-moodboarding.html">
+        <span class="eyebrow">Next case study</span>
+        <span class="case-next-title">Watobu: Moodboarding for Visual Product Research <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </article>
+  </div>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Have a project or idea in <em>mind</em>?</h2>
+    <p class="wip-text">I’m always open to conversations, collaborations and opportunities to learn and contribute.</p>
+    <div class="actions">
+      <a class="btn primary" href="#" data-contact>Get in touch</a>
+    </div>
+    <p class="contact-details" hidden>
+      <span id="contact-email" hidden>Email: <a></a></span>
+      <span id="contact-linkedin" hidden>LinkedIn: <a target="_blank" rel="noopener">View profile</a></span>
+    </p>
+  </section>
+</main>
+
+<!-- ============ Floating bottom nav ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <span class="nav-hi" aria-hidden="true"></span>
+  <a href="../index.html" data-page="home">Home</a>
+  <a href="../index.html#work" data-page="work" aria-current="page">Work</a>
+  <a href="../index.html#about" data-page="about">About</a>
+</nav>
+
+<script type="module" src="../js/case.js"></script>
+</body>
+</html>

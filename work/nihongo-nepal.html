@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nihongo Nepal Case Study</title>
+<meta name="description" content="Case study: designing the end-to-end student learning experience for Nihongo Nepal, a mobile app that prepares students for the JLPT and JFT.">
+<meta property="og:title" content="Nihongo Nepal: Turning JLPT Prep from a Textbook into a Guide">
+<meta property="og:description" content="A UI/UX case study by Priyanka Kadel.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+
+<div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+<!-- ============ Top bar: logo mark + quick links ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="../index.html" aria-label="Priyanka Kadel, back to home" title="Home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#9BAD50"/>
+        <circle cx="24" cy="24" r="23" fill="url(#markShine)"/>
+        <g class="mark-ring"><circle cx="24" cy="24" r="18.5" fill="none" stroke="#F7F6F2" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 2.6" stroke-linecap="round"/></g>
+        <text x="24" y="29.5" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-weight="700" font-size="15.5" letter-spacing="-.5" fill="#393027">PK</text>
+        <defs>
+          <radialGradient id="markShine" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+            <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="quick" id="quick">
+      <a class="q-in" id="q-linkedin" href="#" target="_blank" rel="noopener" aria-label="Priyanka on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.69h-4v-5.04c0-1.2-.02-2.75-1.73-2.75-1.74 0-2 1.31-2 2.66v5.13h-4v-11Z"/></svg>
+      </a>
+      <a class="q-cv" id="q-resume" href="../assets/resume.pdf" download aria-label="Download resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span class="q-label">Resume</span>
+      </a>
+      <span class="toast" id="toast" role="status" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="case">
+
+  <!-- ============ Hero ============ -->
+  <header class="case-hero">
+    <a class="back-link" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1 class="case-title">Nihongo Nepal: Turning JLPT Prep from a Textbook into a <em>Guide</em></h1>
+    <ul class="tags" aria-label="Project type">
+      <li>Mobile learning app</li>
+      <li>MVP, 0 <span class="arr">→</span> 1</li>
+    </ul>
+    <p class="case-read">Reading time: ~5 min (1,124 words)</p>
+  </header>
+
+  <figure class="case-cover">
+    <img src="../assets/work/nihongo-cover.webp" width="2000" height="1903" decoding="async" fetchpriority="high"
+         alt="The Nihongo Nepal app map on a whiteboard: login, onboarding, home, navigation, courses, tests, performance and flashcards, with detailed logic for tests, lessons and navigation">
+  </figure>
+
+  <div class="case-layout">
+    <nav class="case-toc" aria-label="On this page">
+      <p class="eyebrow">On this page</p>
+      <ol>
+        <li><a href="#challenge">The challenge</a></li>
+        <li><a href="#who">Who it affected</a></li>
+        <li><a href="#why">Why it mattered</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#improved">What improved</a></li>
+        <li><a href="#learned">What I learned</a></li>
+      </ol>
+    </nav>
+
+    <article class="case-body">
+      <p class="case-lead">I designed the end-to-end student learning experience for Nihongo Nepal, a mobile app that prepares Japanese-language students for the JLPT (Starter, N5 and N4) and the JFT. I worked from secondary research through UX/UI design to implementation QA, across the MVP’s development and launch.</p>
+
+      <!-- ---------- The challenge ---------- -->
+      <section id="challenge" class="reveal">
+        <h2>The challenge</h2>
+        <p><strong>What was broken.</strong> JLPT preparation is long, repetitive and deadline-driven. Most study tools mirror the textbook: chapters, notes and question banks. They assume the learner already knows what to study next. In practice, learners start motivated, then their energy drops week by week until the exam is close and panic sets in. When they hit a run of wrong answers, many simply quit.</p>
+        <p><strong>The problem.</strong> Learners lose momentum over a months-long course because they don’t know what to do next, and their practice doesn’t feel connected to the real exam. The question I designed around was:</p>
+        <blockquote class="hmw"><p>How might we guide learners so that every session, long or short, high or low energy, moves them closer to passing?</p></blockquote>
+      </section>
+
+      <!-- ---------- Who it affected ---------- -->
+      <section id="who" class="reveal">
+        <h2>Who it affected</h2>
+        <p>The app serves students preparing for the JLPT and JFT. They study in class and on their own, often on commutes and in short sessions. Secondary research showed that these learners differed less by age or background than by their state on a given day: how much time, energy and confidence they had. I captured that as a set of behavioural dimensions:</p>
+        <dl class="dims">
+          <div><dt>Time</dt><dd>Students study around five hours in class, then manage study time alone. Practice is casual when the exam is far away and intense when it is close.</dd></div>
+          <div><dt>Energy</dt><dd>High in the morning, after a day off and at the start of the course, then it falls.</dd></div>
+          <div><dt>Confidence</dt><dd>High in learners who have attempted N5, low in younger or weaker learners.</dd></div>
+          <div><dt>Patience</dt><dd>Frustration grows as the course drags on and when many answers are wrong.</dd></div>
+          <div><dt>Focus and cognitive load</dt><dd>Dense screens fatigue learners, and not everyone is tech-savvy.</dd></div>
+          <div><dt>Setting</dt><dd>Some use the app in class, others on commutes, often one-handed.</dd></div>
+          <div><dt>Self-direction</dt><dd>Many need to be “dragged along”.</dd></div>
+          <div><dt>Drive</dt><dd>Deadlines, streaks and visible progress motivate.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ---------- Why it mattered ---------- -->
+      <section id="why" class="reveal">
+        <h2>Why it mattered</h2>
+        <p>A learner who loses momentum doesn’t just fall behind on a course; they risk failing an exam that stands between them and their plans in Japan. A textbook-style app leaves the hardest part, deciding what to do next, to the learner at exactly the moments they are least able to do it.</p>
+        <p>This changed how I approached the design. A fixed persona (“Sita, 22, wants to work in Japan”) can’t answer a question like “should this screen have three steps or one?” The behavioural dimensions can, so they became the rubric for every design decision. The insight that shaped everything was this:</p>
+        <p class="insight"><span>The app had to decide for the learner what to do next, and make that next step small enough to start even on a low-energy day.</span></p>
+      </section>
+
+      <!-- ---------- What changed ---------- -->
+      <section id="changed" class="reveal">
+        <h2>What changed</h2>
+
+        <h3>A home screen that decides for you.</h3>
+        <p>I mapped the full app, from login and onboarding to every course, test and review path, before designing screens. The app has five tabs, each with one job: Home, Courses, Tests, Performance and Flashcards. Each one answers a question learners actually ask: What now? What’s next to learn? Am I ready? Where am I weak? What should I review?</p>
+        <p>Home became a to-do list rather than a dashboard. It surfaces four prompts:</p>
+        <ol class="steps">
+          <li>An exam countdown and reminder.</li>
+          <li>Continue lesson, one tap back to where the learner stopped.</li>
+          <li>This week’s quiz, a small scheduled commitment.</li>
+          <li>Today’s flashcards, a low-effort task for tired moments.</li>
+        </ol>
+        <p>A live indicator flags when a class’s live test is running. A short guided tour introduces all of this on first launch.</p>
+
+        <h3>One chapter page, every format.</h3>
+        <p>Each chapter gathers video or audio (with a transcript), notes, flashcards and a practice quiz, so learners can pick the format that suits their energy and setting. Every loop closes: flashcards feed a chapter deck, quizzes feed Performance, and Performance links back to the exact chapter quiz to retry.</p>
+
+        <h3>Lessons built from five reusable blocks.</h3>
+        <p>Instead of fixed templates, lessons combine five screen types in any number and order:</p>
+        <ol class="blocks">
+          <li>a pick-one-word practice</li>
+          <li>an audio screen (hear a word and find it)</li>
+          <li>a short explainer video</li>
+          <li>text notes</li>
+          <li>a complete-the-sentence practice</li>
+        </ol>
+        <p>Each screen holds a single idea. Starter lessons cover the alphabet: teach, recognise from audio, test, then summarise, with a loop back to teaching whenever the learner is unsure. N5 and N4 lessons teach and test vocabulary before grammar, so learners meet grammar with words they already know.</p>
+
+        <h3>Smaller formats, less fatigue.</h3>
+        <p>In the Starter test, four multiple-choice questions became one matching game: learners match four Japanese characters to their English equivalents on a single screen. Every lesson now ends with a summary that names what to review, not just a score.</p>
+
+        <h3>A test system that rehearses the real exam.</h3>
+        <ul class="points">
+          <li><strong>Three test types.</strong> Unit and mid tests check progress; live tests are taken together as a class; mock tests are full JLPT and JFT simulations.</li>
+          <li><strong>Mock tests mirror the exam.</strong> They open with a wait screen and move through the sections in order.</li>
+          <li><strong>Clearer results.</strong> Results separate right, wrong and unanswered answers, and offer a one-tap retake.</li>
+          <li><strong>Built for short sessions.</strong> Quizzes can be paused.</li>
+          <li><strong>Targeted review.</strong> Performance breaks scores down by category and links back to each chapter.</li>
+          <li><strong>Low-effort flashcards.</strong> Each card asks one question: remember, or don’t remember.</li>
+        </ul>
+      </section>
+
+      <!-- ---------- What improved ---------- -->
+      <section id="improved" class="reveal">
+        <h2>What improved</h2>
+        <ul class="outcomes">
+          <li><strong>Learners always have a next step.</strong> Home tells them what to do instead of making them decide.</li>
+          <li><strong>Every session counts.</strong> A five-hour class and a ten-minute commute both have something meaningful to do.</li>
+          <li><strong>Mistakes became next steps.</strong> Lesson summaries and category scores turn wrong answers into specific things to review.</li>
+          <li><strong>Less time per learning check.</strong> Combining four questions into one game gave the same check in a quarter of the screens, and it feels like play.</li>
+          <li><strong>No surprises on exam day.</strong> The mock test format is familiar long before the real JLPT or JFT.</li>
+          <li><strong>Faster content creation.</strong> Modular screen types let the content team build new lessons without new design work.</li>
+          <li><strong>Less subjective design reviews.</strong> The behavioural dimensions gave the team a shared way to judge designs.</li>
+        </ul>
+      </section>
+
+      <!-- ---------- What I learned ---------- -->
+      <section id="learned" class="learned reveal">
+        <h2>What I learned</h2>
+        <p>Design for the learner’s state, not their profile. Learners didn’t need more content; they needed to be told what to do next. Small formats protect motivation, because a learner’s worst days are when most courses lose them.</p>
+      </section>
+
+      <div class="case-end">
+        <a class="btn primary" href="../index.html#work"><span class="arr" aria-hidden="true">←</span>&nbsp;Back to work</a>
+        <a class="btn secondary" href="../index.html#about">About me</a>
+      </div>
+      <a class="case-next" href="nihongo-conversation.html">
+        <span class="eyebrow">Next case study</span>
+        <span class="case-next-title">Nihongo Nepal: Conversation Practice with an AI Partner <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </article>
+  </div>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Have a project or idea in <em>mind</em>?</h2>
+    <p class="wip-text">I’m always open to conversations, collaborations and opportunities to learn and contribute.</p>
+    <div class="actions">
+      <a class="btn primary" href="#" data-contact>Get in touch</a>
+    </div>
+    <p class="contact-details" hidden>
+      <span id="contact-email" hidden>Email: <a></a></span>
+      <span id="contact-linkedin" hidden>LinkedIn: <a target="_blank" rel="noopener">View profile</a></span>
+    </p>
+  </section>
+</main>
+
+<!-- ============ Floating bottom nav ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <span class="nav-hi" aria-hidden="true"></span>
+  <a href="../index.html" data-page="home">Home</a>
+  <a href="../index.html#work" data-page="work" aria-current="page">Work</a>
+  <a href="../index.html#about" data-page="about">About</a>
+</nav>
+
+<script type="module" src="../js/case.js"></script>
+</body>
+</html>

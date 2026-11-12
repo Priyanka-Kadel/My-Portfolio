@@ -368,6 +368,11 @@ export async function createLanyard(canvas, cfg) {
     if (!drag.moved && performance.now() - drag.downAt < 350) flip();
     canvas.style.cursor = e.pointerType === 'mouse' ? 'grab' : 'default';
   }
+  // touch: the page scrolls normally, except when the finger grabbed the card
+  // (pointerdown fires before touchstart, so drag.on is already set)
+  const holdTouch = e => { if (drag.on && e.cancelable) e.preventDefault(); };
+  canvas.addEventListener('touchstart', holdTouch, { passive: false });
+  canvas.addEventListener('touchmove', holdTouch, { passive: false });
   canvas.addEventListener('pointerup', release);
   canvas.addEventListener('pointercancel', release);
   canvas.addEventListener('keydown', e => {
@@ -433,6 +438,7 @@ async function fontsReady() {
         document.fonts.load('700 100px "Schibsted Grotesk"'),
         document.fonts.load('800 100px "Schibsted Grotesk"'),
         document.fonts.load('400 40px "Courier Prime"'),
+        document.fonts.load('700 40px "Courier Prime"'),
       ]),
       new Promise(r => setTimeout(r, 2500)),
     ]);
@@ -493,7 +499,7 @@ function frontCanvas(cfg, img) {
   x.textBaseline = 'alphabetic';
 
   // name
-  fitFont(x, cfg.name, 700, 92, GROTESK, W - 180);
+  fitFont(x, cfg.name, 800, 94, GROTESK, W - 180);
   x.fillText(cfg.name, W / 2, 262);
 
   // portrait box
@@ -511,8 +517,8 @@ function frontCanvas(cfg, img) {
   lines.forEach((l, i) => x.fillText(l, W / 2, top + i * lh));
 
   // city
-  x.fillStyle = '#6f6d69';
-  x.font = `400 32px ${MONO}`;
+  x.fillStyle = '#3d3a36';
+  x.font = `700 38px ${MONO}`;
   x.fillText(cfg.city, W / 2, top + (lines.length - 1) * lh + 84);
 
   drawSlot(x, W, H);
@@ -579,7 +585,7 @@ function backCanvas(cfg) {
     }
   }
 
-  x.font = `400 32px ${MONO}`;
+  x.font = `700 34px ${MONO}`;
   x.textBaseline = 'alphabetic';
   x.textAlign = 'left';
   x.fillText(cfg.backHeader[0], 80, 190);
@@ -591,10 +597,10 @@ function backCanvas(cfg) {
 
   // name + role
   x.fillStyle = '#141414';
-  fitFont(x, cfg.name, 700, 96, GROTESK, maxW);
+  fitFont(x, cfg.name, 800, 98, GROTESK, maxW);
   x.fillText(cfg.name, L, 770);
-  x.fillStyle = '#4a4743';
-  fitFont(x, cfg.backRole, 500, 46, GROTESK, maxW);
+  x.fillStyle = '#2e2b28';
+  fitFont(x, cfg.backRole, 600, 50, GROTESK, maxW);
   x.fillText(cfg.backRole, L, 840);
 
   // skills, big and bold
@@ -608,9 +614,9 @@ function backCanvas(cfg) {
   x.strokeStyle = 'rgba(20,20,20,0.18)';
   x.lineWidth = 2;
   x.beginPath(); x.moveTo(L, 1300); x.lineTo(W - 80, 1300); x.stroke();
-  x.fillStyle = '#6f6d69';
-  x.font = `400 32px ${MONO}`;
-  cfg.backEdu.forEach((l, i) => x.fillText(l, L, 1372 + i * 46));
+  x.fillStyle = '#3d3a36';
+  x.font = `700 36px ${MONO}`;
+  cfg.backEdu.forEach((l, i) => x.fillText(l, L, 1376 + i * 52));
 
   drawSlot(x, W, H);
   return c;

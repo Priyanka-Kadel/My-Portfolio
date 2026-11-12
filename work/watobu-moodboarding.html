@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watobu Moodboarding Case Study</title>
+<meta name="description" content="Case study: designing moodboarding in Watobu so product teams can organise real product screens into visual research.">
+<meta property="og:title" content="Watobu: Moodboarding for Visual Product Research">
+<meta property="og:description" content="A UI/UX case study by Priyanka Kadel.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+
+<div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+<!-- ============ Top bar: logo mark + quick links ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="../index.html" aria-label="Priyanka Kadel, back to home" title="Home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#9BAD50"/>
+        <circle cx="24" cy="24" r="23" fill="url(#markShine)"/>
+        <g class="mark-ring"><circle cx="24" cy="24" r="18.5" fill="none" stroke="#F7F6F2" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 2.6" stroke-linecap="round"/></g>
+        <text x="24" y="29.5" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-weight="700" font-size="15.5" letter-spacing="-.5" fill="#393027">PK</text>
+        <defs>
+          <radialGradient id="markShine" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+            <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="quick" id="quick">
+      <a class="q-in" id="q-linkedin" href="#" target="_blank" rel="noopener" aria-label="Priyanka on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.69h-4v-5.04c0-1.2-.02-2.75-1.73-2.75-1.74 0-2 1.31-2 2.66v5.13h-4v-11Z"/></svg>
+      </a>
+      <a class="q-cv" id="q-resume" href="../assets/resume.pdf" download aria-label="Download resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span class="q-label">Resume</span>
+      </a>
+      <span class="toast" id="toast" role="status" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="case">
+
+  <!-- ============ Hero ============ -->
+  <header class="case-hero">
+    <a class="back-link" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1 class="case-title">Watobu: <em>Moodboarding</em> for Visual Product Research</h1>
+    <ul class="tags" aria-label="Project type">
+      <li>Visual research workflows</li>
+      <li>UX/UI design</li>
+      <li>Product thinking</li>
+    </ul>
+    <p class="case-read">Reading time: ~3 min (622 words)</p>
+  </header>
+
+  <figure class="case-cover">
+    <img src="../assets/work/watobu-moodboarding-cover.webp" width="2000" height="1947" decoding="async" fetchpriority="high"
+         alt="A laptop showing Watobu’s Omnichannel collection: product flow cards from Odoo, Vapi and Help Scout, set on a tilted orange tile">
+  </figure>
+
+  <div class="case-layout">
+    <nav class="case-toc" aria-label="On this page">
+      <p class="eyebrow">On this page</p>
+      <ol>
+        <li><a href="#challenge">The challenge</a></li>
+        <li><a href="#who">Who it affected</a></li>
+        <li><a href="#why">Why it mattered</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#improved">What improved</a></li>
+        <li><a href="#learned">What I learned</a></li>
+      </ol>
+    </nav>
+
+    <article class="case-body">
+      <p class="case-lead">Moodboarding lets Watobu users gather real product screens and flows onto a visual board, arrange them, and return to them as their research evolves. As a core contributor, I worked across research, workflow mapping, interaction design, UI, specifications and design QA.</p>
+
+      <section id="challenge" class="reveal">
+        <h2>The challenge</h2>
+        <p><strong>What was broken.</strong> Watobu helped people collect references, but not make sense of them.</p>
+        <ul class="points">
+          <li><strong>Collecting isn’t understanding.</strong> Collections stored screens, but didn’t help users group, compare or arrange them.</li>
+          <li><strong>The work left Watobu.</strong> Real synthesis happened in Figma or slides, cutting the link back to the source flows.</li>
+          <li><strong>Research went stale.</strong> Boards built elsewhere were hard to revisit or update as a project’s needs changed.</li>
+        </ul>
+        <div class="callout"><p><strong>The problem.</strong> Users had nowhere in Watobu to organise references into a visual argument. Synthesis happened elsewhere and lost its connection to the source.</p></div>
+      </section>
+
+      <section id="who" class="reveal">
+        <h2>Who it affected</h2>
+        <p>Designers, product managers and researchers who use references to build an argument rather than one screen at a time. Typical cases:</p>
+        <ul class="points">
+          <li>A designer gathering onboarding flows from five competitors to present at a kickoff.</li>
+          <li>A product manager keeping a board open for weeks, adding references as new questions come up.</li>
+          <li>A researcher sharing a board so the whole team debates the same evidence.</li>
+        </ul>
+      </section>
+
+      <section id="why" class="reveal">
+        <h2>Why it mattered</h2>
+        <p>Research becomes useful only once it’s arranged: grouped by pattern, ordered by flow, connected to a takeaway. A flat list of saved screens holds evidence but not insight. Within Watobu, search finds references and bookmarks keep them, but the step where references turn into a decision was missing.</p>
+        <p>Research into moodboarding and visual-organisation tools, and into products in my reference library, showed three patterns:</p>
+        <dl class="dims">
+          <div><dt>Canvas or grid</dt><dd>Free canvases give freedom but get messy fast; grids stay clean but can feel rigid.</dd></div>
+          <div><dt>Add in context</dt><dd>Adding works best from wherever something is found, not only from inside the board.</dd></div>
+          <div><dt>Clusters over positions</dt><dd>People think in clusters, like “onboarding” or “empty states”, rather than precise positions.</dd></div>
+        </dl>
+      </section>
+
+      <section id="changed" class="reveal">
+        <h2>What changed</h2>
+        <p>Moodboarding gave Watobu a workflow of collect, organise, revisit, share. It is now the step after search and bookmarking, where references become a point of view. The design was shaped by five challenges:</p>
+        <ol class="steps">
+          <li><strong>Effortless board creation.</strong> A setup step slows people down, but skipping it leaves boards unnamed and hard to find. Creating a board had to feel like a natural part of saving a reference.</li>
+          <li><strong>Flexible but tidy.</strong> The workspace needed to stay clear by default while still letting people rearrange.</li>
+          <li><strong>Clarity with many references.</strong> Dense SaaS screenshots blur together at small sizes. Every reference needed consistent presentation, plus enough context (which app, which flow) to stay recognisable.</li>
+          <li><strong>Safe adding and removing.</strong> Removing an item had to be easy but never accidental.</li>
+          <li><strong>Built for ongoing research.</strong> Boards are revisited over weeks, so getting back to recent work had to be quick.</li>
+        </ol>
+      </section>
+
+      <section id="improved" class="reveal">
+        <h2>What improved</h2>
+        <ul class="outcomes">
+          <li><strong>Synthesis stays in Watobu.</strong> Users can organise references where they found them, instead of moving the thinking into another tool.</li>
+          <li><strong>References keep their source.</strong> A board stays connected to the original screens and flows.</li>
+          <li><strong>Research stays alive.</strong> Boards can be revisited and updated as a project moves on, rather than going stale in a slide deck.</li>
+          <li><strong>Teams share one body of evidence.</strong> A shared board lets everyone debate the same references.</li>
+        </ul>
+      </section>
+
+      <section id="learned" class="learned reveal">
+        <h2>What I learned</h2>
+        <p>Visual research tools succeed when they help people think, not just store. Organising content is a design problem in its own right. Where things go and how they’re grouped shapes what people notice, compare and conclude.</p>
+      </section>
+
+      <div class="case-end">
+        <a class="btn primary" href="../index.html#work"><span class="arr" aria-hidden="true">←</span>&nbsp;Back to work</a>
+        <a class="btn secondary" href="../index.html#about">About me</a>
+      </div>
+      <a class="case-next" href="foundery-usa.html">
+        <span class="eyebrow">Next case study</span>
+        <span class="case-next-title">Foundery USA: Helping International Founders Trust a U.S. Company They’ve Just Met <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </article>
+  </div>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Have a project or idea in <em>mind</em>?</h2>
+    <p class="wip-text">I’m always open to conversations, collaborations and opportunities to learn and contribute.</p>
+    <div class="actions">
+      <a class="btn primary" href="#" data-contact>Get in touch</a>
+    </div>
+    <p class="contact-details" hidden>
+      <span id="contact-email" hidden>Email: <a></a></span>
+      <span id="contact-linkedin" hidden>LinkedIn: <a target="_blank" rel="noopener">View profile</a></span>
+    </p>
+  </section>
+</main>
+
+<!-- ============ Floating bottom nav ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <span class="nav-hi" aria-hidden="true"></span>
+  <a href="../index.html" data-page="home">Home</a>
+  <a href="../index.html#work" data-page="work" aria-current="page">Work</a>
+  <a href="../index.html#about" data-page="about">About</a>
+</nav>
+
+<script type="module" src="../js/case.js"></script>
+</body>
+</html>

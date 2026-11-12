@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Foundery USA Case Study</title>
+<meta name="description" content="Case study: restructuring Foundery USA’s information architecture and landing page so international founders can trust a U.S. formation service.">
+<meta property="og:title" content="Foundery USA: Helping International Founders Trust a U.S. Company They’ve Just Met">
+<meta property="og:description" content="A UI/UX case study by Priyanka Kadel.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Courier+Prime:wght@400;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+
+<div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+<!-- ============ Top bar: logo mark + quick links ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="../index.html" aria-label="Priyanka Kadel, back to home" title="Home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#9BAD50"/>
+        <circle cx="24" cy="24" r="23" fill="url(#markShine)"/>
+        <g class="mark-ring"><circle cx="24" cy="24" r="18.5" fill="none" stroke="#F7F6F2" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 2.6" stroke-linecap="round"/></g>
+        <text x="24" y="29.5" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-weight="700" font-size="15.5" letter-spacing="-.5" fill="#393027">PK</text>
+        <defs>
+          <radialGradient id="markShine" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+            <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="quick" id="quick">
+      <a class="q-in" id="q-linkedin" href="#" target="_blank" rel="noopener" aria-label="Priyanka on LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.76v5.69h-4v-5.04c0-1.2-.02-2.75-1.73-2.75-1.74 0-2 1.31-2 2.66v5.13h-4v-11Z"/></svg>
+      </a>
+      <a class="q-cv" id="q-resume" href="../assets/resume.pdf" download aria-label="Download resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span class="q-label">Resume</span>
+      </a>
+      <span class="toast" id="toast" role="status" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="case">
+
+  <!-- ============ Hero ============ -->
+  <header class="case-hero">
+    <a class="back-link" href="../index.html#work"><span class="arr" aria-hidden="true">←</span> All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1 class="case-title">Foundery USA: Helping International Founders <em>Trust</em> a U.S. Company They’ve Just Met</h1>
+    <ul class="tags" aria-label="Project type">
+      <li>Information architecture</li>
+      <li>Landing page redesign</li>
+      <li>Credibility design</li>
+    </ul>
+    <p class="case-read">Reading time: ~5 min (1,086 words)</p>
+  </header>
+
+  <figure class="case-cover">
+    <img src="../assets/work/foundery-usa-cover.webp" width="2000" height="2121" decoding="async" fetchpriority="high"
+         alt="Foundery USA’s redesigned landing page: the hero, global banking readiness logos, and the founder playbook articles">
+  </figure>
+
+  <div class="case-layout">
+    <nav class="case-toc" aria-label="On this page">
+      <p class="eyebrow">On this page</p>
+      <ol>
+        <li><a href="#challenge">The challenge</a></li>
+        <li><a href="#who">Who it affected</a></li>
+        <li><a href="#why">Why it mattered</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#improved">What improved</a></li>
+        <li><a href="#learned">What I learned</a></li>
+      </ol>
+    </nav>
+
+    <article class="case-body">
+      <p class="case-lead">Foundery USA helps founders outside the United States form and run U.S. companies remotely. It handles entity formation, registered agent service, EIN registration, compliance and banking readiness, with no U.S. address or Social Security Number required. As the UI/UX Designer, I restructured the website’s information architecture and redesigned its landing page, working with product managers from defining the structure through to design.</p>
+
+      <section id="challenge" class="reveal">
+        <h2>The challenge</h2>
+        <p><strong>What was broken.</strong> Forming a U.S. company from abroad is complicated, and the advice online is often conflicting. Visitors arrive with a set of questions, and the website had to answer them clearly and in the right order:</p>
+        <ol class="steps">
+          <li>Can I do this from abroad, without an SSN or U.S. address?</li>
+          <li>Which structure and state are right for me, and who will help me decide?</li>
+          <li>What happens, how long it takes, and what I get at each step.</li>
+          <li>What it costs, with no surprises.</li>
+          <li>Why I should trust this company with my documents and my business.</li>
+        </ol>
+        <div class="callout"><p><strong>The problem.</strong> The site needed a structure built around the questions an international founder actually asks. Visitors had to understand the service, see enough evidence to trust it, and know their next step, whether they were ready to start or still unsure.</p></div>
+      </section>
+
+      <section id="who" class="reveal">
+        <h2>Who it affected</h2>
+        <ul class="points">
+          <li><strong>The founders.</strong> Founders in countries such as India, Kenya and Sri Lanka who need a U.S. entity to sell internationally, get paid or open global bank accounts. Before they commit, they have to hand over passport and identity documents to a company they found online. Some arrive ready to start; others need to talk to someone first.</li>
+          <li><strong>The business.</strong> For a service sold entirely online, the website is the main place where trust is won or lost.</li>
+        </ul>
+      </section>
+
+      <section id="why" class="reveal">
+        <h2>Why it mattered</h2>
+        <p>For this business, the website is the trust decision. A confusing page reads as a risky company, and a founder who doesn’t trust the site won’t hand over their passport. Research into how founders approach U.S. formation and into competing services showed:</p>
+        <ul class="points">
+          <li><strong>Clarity is the product.</strong> Founders need one clear explanation they can trust.</li>
+          <li><strong>Visible steps help.</strong> A multi-step legal process feels less risky when each step, its duration and its output are shown.</li>
+          <li><strong>Proof comes first.</strong> Founders want real people, real credentials and real contact details before sharing documents.</li>
+          <li><strong>Readiness varies.</strong> Ready visitors need a fast start; unsure visitors need a human to talk to.</li>
+        </ul>
+      </section>
+
+      <section id="changed" class="reveal">
+        <h2>What changed</h2>
+
+        <h3>An IA built on founder questions.</h3>
+        <p>I organised the site so each question has a clear home. The primary navigation was kept to three items, Services, Pricing and Resources, plus Login and a persistent Get Started button.</p>
+        <ul class="qa">
+          <li><b>“Can I do this from abroad?”</b> is answered in the hero, the differentiators and the final call to action.</li>
+          <li><b>“Which structure is right for me?”</b> is answered by the expert consultation and the Resources guides.</li>
+          <li><b>“What happens and when?”</b> is answered by a five-step workflow on the landing page and the Services page.</li>
+          <li><b>“What does it cost?”</b> is answered by pricing on the landing page and a dedicated Pricing page.</li>
+          <li><b>“Why trust them?”</b> is answered by founder stories, credentials, contact details and disclaimers.</li>
+        </ul>
+
+        <h3>Credibility designed with E-E-A-T.</h3>
+        <p>E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) comes from Google’s search quality guidance. It is not a design checklist or a direct ranking factor. I used it as a lens for one question: what would make a founder abroad trust this company with their passport?</p>
+        <dl class="dims">
+          <div><dt>Experience</dt><dd>Named founder stories give each person’s role and country and tie them to a real outcome. The footer notes the company has served founders since 2020.</dd></div>
+          <div><dt>Expertise</dt><dd>A five-step workflow shows each step’s timeframe and concrete deliverables, such as a state selection memo, the Form SS-4 filing and the EIN confirmation letter. A Resources playbook offers state and banking guides.</dd></div>
+          <div><dt>Authoritativeness</dt><dd>Credentials are stated plainly: licensed registered agents, CAA-assisted ITIN applications, and formation in all 50 states. The banking platforms founders can use appear right below the hero.</dd></div>
+          <div><dt>Trustworthiness</dt><dd>One upfront price plus state fees, no hidden extras, timeframes marked as variable, a WhatsApp line with a 24-hour reply promise, full contact details, and a clear statement that the company is not a law firm.</dd></div>
+        </dl>
+        <p>I treated honesty as a trust signal: a service that names its limits is easier to believe. Evidence sits next to the claim it supports, rather than in a single “About us” block.</p>
+
+        <h3>A landing page that reads as one argument.</h3>
+        <p>The page takes a founder from “is this possible for me?” to “I’ll start” or “I’ll ask first” in one scroll:</p>
+        <ol class="steps">
+          <li><strong>Hero.</strong> What the company does, with one Get Started button.</li>
+          <li><strong>Global banking readiness.</strong> The main reason founders form a U.S. company.</li>
+          <li><strong>Founder success stories.</strong> Proof from people in similar situations.</li>
+          <li><strong>The five-step workflow.</strong> Timeframes and deliverables for each step.</li>
+          <li><strong>Global support.</strong> A human on WhatsApp for those not ready to start.</li>
+          <li><strong>Pricing.</strong> One plan, shown openly.</li>
+          <li><strong>How we’re different.</strong> Four differentiators, each answering a common objection.</li>
+          <li><strong>Expert guidance.</strong> A second chance to talk to someone, after the detail.</li>
+          <li><strong>Playbook for founders.</strong> Guides that show expertise.</li>
+          <li><strong>Final call to action.</strong> Restates “no SSN required, remote setup” at the moment of decision.</li>
+        </ol>
+      </section>
+
+      <section id="improved" class="reveal">
+        <h2>What improved</h2>
+        <ul class="outcomes">
+          <li><strong>Questions answered in the order founders ask them.</strong> What the service is, how it works, what it costs, and why to trust it.</li>
+          <li><strong>The biggest question comes first.</strong> Banking access, a top motivation, is addressed before the visitor scrolls.</li>
+          <li><strong>No dead ends.</strong> Ready visitors can start right away, and unsure ones can talk to a person.</li>
+          <li><strong>Less anxiety about the process.</strong> Each step shows what happens and what the founder receives.</li>
+          <li><strong>Fewer reasons to leave.</strong> Pricing is on the landing page, with state fees called out.</li>
+          <li><strong>Doubt removed at the decision point.</strong> “No SSN required” is repeated where the decision happens.</li>
+          <li><strong>Live today.</strong> The restructured navigation and landing page are live at <a href="https://founderyusa.com" target="_blank" rel="noopener">founderyusa.com</a>.</li>
+        </ul>
+      </section>
+
+      <section id="learned" class="learned reveal">
+        <h2>What I learned</h2>
+        <p>For a trust-heavy service, structure is credibility. E-E-A-T works best as a set of questions rather than a checklist. Asking “what would make a founder doubt us here?” at each section put evidence exactly where it was needed. Being honest about limits made the confident claims more believable.</p>
+      </section>
+
+      <div class="case-end">
+        <a class="btn primary" href="../index.html#work"><span class="arr" aria-hidden="true">←</span>&nbsp;Back to work</a>
+        <a class="btn secondary" href="../index.html#about">About me</a>
+      </div>
+      <a class="case-next" href="nihongo-nepal.html">
+        <span class="eyebrow">Next case study</span>
+        <span class="case-next-title">Nihongo Nepal: Turning JLPT Prep from a Textbook into a Guide <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </article>
+  </div>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Have a project or idea in <em>mind</em>?</h2>
+    <p class="wip-text">I’m always open to conversations, collaborations and opportunities to learn and contribute.</p>
+    <div class="actions">
+      <a class="btn primary" href="#" data-contact>Get in touch</a>
+    </div>
+    <p class="contact-details" hidden>
+      <span id="contact-email" hidden>Email: <a></a></span>
+      <span id="contact-linkedin" hidden>LinkedIn: <a target="_blank" rel="noopener">View profile</a></span>
+    </p>
+  </section>
+</main>
+
+<!-- ============ Floating bottom nav ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <span class="nav-hi" aria-hidden="true"></span>
+  <a href="../index.html" data-page="home">Home</a>
+  <a href="../index.html#work" data-page="work" aria-current="page">Work</a>
+  <a href="../index.html#about" data-page="about">About</a>
+</nav>
+
+<script type="module" src="../js/case.js"></script>
+</body>
+</html>

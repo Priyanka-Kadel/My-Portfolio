@@ -1,13 +1,10 @@
 /* =========================================================
-   Routing (Home / Work / About), typewriter headline, sliding nav,
-   quick links, and the scroll-linked journey timeline.
-   The 3D lanyard lives in lanyard.js and is only loaded on Home.
+   Home page: single scrolling page (Home → Work → About),
+   typewriter headline, nav that follows the scroll, and the
+   scroll-linked journey timeline. The 3D lanyard lives in lanyard.js.
+   Your LinkedIn / email / resume links live in config.js.
    ========================================================= */
-
-/* ---- Your links: fill these in ---- */
-const LINKEDIN_URL = '';                 // e.g. 'https://www.linkedin.com/in/your-handle/'
-const RESUME_URL = 'assets/resume.pdf';  // drop the PDF at this path
-const CONTACT_EMAIL = '';                // optional; used by "Contact me" (falls back to LinkedIn)
+import { $, $$, reduceMotion, initLinks, initNav } from './chrome.js';
 
 /* ---- Card content (drawn onto the 3D pass) ---- */
 const CARD = {
@@ -23,57 +20,10 @@ const CARD = {
 
 const WORDS = ['understand', 'navigate', 'use'];
 
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+initLinks();
 
-/* ---------- Toast ---------- */
-const toast = $('#toast');
-let toastT;
-function say(msg) {
-  toast.textContent = msg;
-  toast.hidden = false;
-  clearTimeout(toastT);
-  toastT = setTimeout(() => { toast.hidden = true; }, 2400);
-}
-
-/* ---------- Quick links ---------- */
+// Polaroid placeholder until a photo is added
 (() => {
-  const li = $('#q-linkedin');
-  if (LINKEDIN_URL) li.href = LINKEDIN_URL;
-  else {
-    li.removeAttribute('target');
-    li.addEventListener('click', e => { e.preventDefault(); say('LinkedIn link coming soon'); });
-  }
-
-  // Resume: only download if the file actually exists, otherwise explain.
-  const cv = $('#q-resume');
-  cv.href = RESUME_URL;
-  let checked = null;
-  cv.addEventListener('click', async e => {
-    if (checked === true) return;
-    e.preventDefault();
-    if (checked === null) {
-      try { checked = (await fetch(RESUME_URL, { method: 'HEAD' })).ok; } catch { checked = false; }
-    }
-    if (checked) cv.click();
-    else say('Resume coming soon');
-  });
-
-  // "Contact me" / "Get in touch": email first, then LinkedIn
-  $$('[data-contact]').forEach(contact => {
-    if (CONTACT_EMAIL) contact.href = 'mailto:' + CONTACT_EMAIL;
-    else if (LINKEDIN_URL) { contact.href = LINKEDIN_URL; contact.target = '_blank'; contact.rel = 'noopener'; }
-    else contact.addEventListener('click', e => { e.preventDefault(); say('Contact details coming soon'); });
-  });
-
-  // Contact details lines only appear once filled in
-  const em = $('#contact-email'), ln = $('#contact-linkedin');
-  if (CONTACT_EMAIL) { em.hidden = false; const a = $('a', em); a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL; }
-  if (LINKEDIN_URL) { ln.hidden = false; $('a', ln).href = LINKEDIN_URL; }
-  $('.contact-details').hidden = !CONTACT_EMAIL && !LINKEDIN_URL;
-
-  // Polaroid placeholder until a photo is added
   const photo = $('.pola-photo');
   const miss = () => photo.classList.add('missing');
   photo.addEventListener('error', miss);
@@ -104,78 +54,44 @@ function say(msg) {
   })();
 })();
 
-/* ---------- Bottom nav: pill rests on the current page, slides to hover ---------- */
-const nav = $('#nav');
-const hi = $('.nav-hi', nav);
-const links = $$('a', nav);
-let current = links[0];
+/* ---------- One scrolling page: nav follows the section in view ---------- */
+const nav = initNav('home');
+const sections = { home: $('#home'), work: $('#work'), about: $('#about') };
 
-function moveHi(a, instant) {
-  if (instant) hi.style.transition = 'none';
-  hi.style.width = a.offsetWidth + 'px';
-  hi.style.transform = `translateX(${a.offsetLeft}px)`;
-  links.forEach(l => l.classList.toggle('lit', l === a));
-  if (instant) { hi.offsetWidth; hi.style.transition = ''; }
+function spy() {
+  const probe = innerHeight * 0.45;
+  let id = 'home';
+  for (const [k, el] of Object.entries(sections)) if (el.getBoundingClientRect().top <= probe) id = k;
+  nav.setCurrent(id);
 }
-links.forEach(a => {
-  a.addEventListener('pointerenter', () => moveHi(a));
-  a.addEventListener('focus', () => moveHi(a));
+
+// In-page links (#, #work, #about) glide to their section and update the URL
+function goTo(id) {
+  const el = sections[id];
+  const top = id === 'home' || !el ? 0 : el.getBoundingClientRect().top + scrollY;
+  try { history.replaceState(null, '', id === 'home' ? location.pathname + location.search : '#' + id); } catch {}
+  window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+$$('[data-home], a[href^="#"]:not([data-contact]):not(#q-linkedin)').forEach(a => {
+  const id = (a.getAttribute('href') || '#').slice(1) || 'home';
+  if (!sections[id]) return;
+  a.addEventListener('click', e => { e.preventDefault(); goTo(id); });
 });
-nav.addEventListener('pointerleave', () => moveHi(current));
-nav.addEventListener('focusout', e => { if (!nav.contains(e.relatedTarget)) moveHi(current); });
-addEventListener('resize', () => moveHi(current, true));
-document.fonts?.ready.then(() => moveHi(current, true));
 
-/* ---------- Router ---------- */
-const views = { home: $('#home-view'), work: $('#work-view'), about: $('#about-view') };
-let page = null;
-let lanyard = null, lanyardLoading = null;
-
-function loadLanyard() {
-  if (lanyard || lanyardLoading) return lanyardLoading;
-  lanyardLoading = import('./lanyard.js')
-    .then(m => m.createLanyard($('#stage'), { ...CARD, reduceMotion }))
-    .then(l => { lanyard = l; if (page === 'home') l.start(); return l; })
-    .catch(err => {
-      console.warn('3D pass unavailable:', err);
-      $('#hint').hidden = true;
-    });
-  return lanyardLoading;
-}
-
-function route() {
-  const next = (location.hash || '').replace('#', '');
-  const target = views[next] ? next : 'home';
-  if (target === page) return;
-  const first = page === null;
-  page = target;
-
-  for (const [k, v] of Object.entries(views)) v.hidden = k !== target;
-  document.body.className = 'view-' + target;
-  if (!first) window.scrollTo(0, 0);
-
-  current = links.find(l => l.dataset.page === target) || links[0];
-  links.forEach(l => l.toggleAttribute('aria-current', l === current));
-  current.setAttribute('aria-current', 'page');
-  moveHi(current, first);
-
-  if (target === 'home') { if (lanyard) lanyard.start(); else loadLanyard(); }
-  else lanyard?.stop();
-
-  if (target === 'about') requestAnimationFrame(updateTimeline);
-}
-
-// Logo / "#" links always go home, even when there's no hash change to fire
-$$('[data-home], a[href="#"]:not([data-contact]):not(#q-linkedin)').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    try { history.pushState(null, '', location.pathname + location.search); } catch {}
-    route();
-    window.scrollTo(0, 0);
+/* ---------- 3D pass: loads right away, only animates while Home is on screen ---------- */
+let lanyard = null, heroVisible = true;
+import('./lanyard.js')
+  .then(m => m.createLanyard($('#stage'), { ...CARD, reduceMotion }))
+  .then(l => { lanyard = l; if (heroVisible) l.start(); })
+  .catch(err => {
+    console.warn('3D pass unavailable:', err);
+    $('#hint').hidden = true;
   });
-});
-addEventListener('hashchange', route);
-addEventListener('popstate', route);
+new IntersectionObserver(([entry]) => {
+  heroVisible = entry.isIntersecting;
+  if (!lanyard) return;
+  if (heroVisible) lanyard.start(); else lanyard.stop();
+}).observe(sections.home);
 
 /* ---------- Journey timeline: scroll-linked fill + reveal ---------- */
 const tl = $('#tl'), fill = $('#tl-fill');
@@ -185,7 +101,7 @@ let ticking = false;
 
 function updateTimeline() {
   ticking = false;
-  if (page !== 'about') return;
+  spy();
   const r = tl.getBoundingClientRect();
   if (reduceMotion) {
     fill.style.height = r.height + 'px';
@@ -202,5 +118,4 @@ function updateTimeline() {
 const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateTimeline); } };
 addEventListener('scroll', onScroll, { passive: true });
 addEventListener('resize', onScroll);
-
-route();
+updateTimeline();

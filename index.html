@@ -24,7 +24,7 @@
 }
 </script>
 </head>
-<body class="view-home">
+<body>
 
 <!-- ============ Top bar: logo mark + quick links ============ -->
 <header class="topbar">
@@ -59,7 +59,7 @@
 <main>
 
   <!-- ============ HOME ============ -->
-  <section class="view hero" id="home-view" aria-label="Home">
+  <section class="view hero" id="home" aria-label="Home">
     <canvas id="stage" tabindex="0" role="img" aria-label="Interactive lanyard pass for Priyanka Kadel. Drag to swing it; click, Enter or Space to flip it."></canvas>
     <div class="overlay">
       <div class="copy-wrap">
@@ -80,23 +80,126 @@
   </section>
 
   <!-- ============ WORK ============ -->
-  <!-- Swap .wip for a grid of case-study cards when they're ready. -->
-  <section class="view work" id="work-view" aria-labelledby="work-title" hidden>
-    <div class="wip">
+  <!-- To add a case study: copy a .case-card, point it at its page in /work/ -->
+  <section class="view work" id="work" aria-labelledby="work-title">
+    <header class="work-head">
       <p class="eyebrow">Work</p>
-      <h2 id="work-title">My case studies are <em>in progress</em>.</h2>
-      <p class="wip-text">Check back soon.</p>
-      <div class="wip-bar" role="img" aria-label="Page in progress, about 70% done"><span></span></div>
-      <p class="wip-label"><i></i>In progress</p>
-      <div class="actions">
-        <a class="btn primary" href="#about">About me</a>
-        <a class="btn secondary" href="#">Back home</a>
-      </div>
+      <h2 id="work-title">Featured works</h2>
+    </header>
+
+    <div class="case-grid">
+      <article class="case-card">
+        <a class="case-link" href="work/nihongo-nepal.html">
+          <div class="case-thumb">
+            <img src="assets/work/nihongo-thumb.webp" width="1200" height="1142" loading="lazy" decoding="async"
+                 alt="Nihongo Nepal user flow map on a whiteboard, set on a tilted pink tile">
+          </div>
+          <div class="case-info">
+            <h3>Nihongo Nepal: Turning JLPT Prep from a Textbook into a Guide</h3>
+            <ul class="tags" aria-label="Project type">
+              <li>Mobile learning app</li>
+              <li>MVP, 0 <span class="arr">→</span> 1</li>
+            </ul>
+            <p class="case-read">Reading time: ~5 min (1,124 words)</p>
+            <span class="case-cta">Read case study <span class="arr" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-link" href="work/nihongo-conversation.html">
+          <div class="case-thumb">
+            <img src="assets/work/nihongo-conversation-thumb.webp" width="1200" height="1319" loading="lazy" decoding="async"
+                 alt="Two phones showing Nihongo Nepal’s conversation practice screen with an AI character, hints and a microphone button, on a tilted purple tile">
+          </div>
+          <div class="case-info">
+            <h3>Nihongo Nepal: Conversation Practice with an AI Partner</h3>
+            <ul class="tags" aria-label="Project type">
+              <li>AI UX</li>
+              <li>Voice interaction</li>
+              <li>Mobile</li>
+            </ul>
+            <p class="case-read">Reading time: ~4 min (889 words)</p>
+            <span class="case-cta">Read case study <span class="arr" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-link" href="work/watobu-ai-search.html">
+          <div class="case-thumb">
+            <img src="assets/work/watobu-ai-search-thumb.webp" width="1200" height="936" loading="lazy" decoding="async"
+                 alt="Watobu’s Feature Spotlight and AI search results screens with the Copilot panel, on a tilted yellow tile">
+          </div>
+          <div class="case-info">
+            <h3>Watobu: Designing AI Search for Product References</h3>
+            <ul class="tags" aria-label="Project type">
+              <li>AI UX</li>
+              <li>Product discovery</li>
+              <li>UX/UI design</li>
+            </ul>
+            <p class="case-read">Reading time: ~4 min (1,005 words)</p>
+            <span class="case-cta">Read case study <span class="arr" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-link" href="work/watobu-moodboarding.html">
+          <div class="case-thumb">
+            <img src="assets/work/watobu-moodboarding-thumb.webp" width="1200" height="1168" loading="lazy" decoding="async"
+                 alt="A laptop showing a Watobu collection of product flow cards, on a tilted orange tile">
+          </div>
+          <div class="case-info">
+            <h3>Watobu: Moodboarding for Visual Product Research</h3>
+            <ul class="tags" aria-label="Project type">
+              <li>Visual research workflows</li>
+              <li>UX/UI design</li>
+              <li>Product thinking</li>
+            </ul>
+            <p class="case-read">Reading time: ~3 min (622 words)</p>
+            <span class="case-cta">Read case study <span class="arr" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-link" href="work/foundery-usa.html">
+          <div class="case-thumb">
+            <img src="assets/work/foundery-usa-thumb.webp" width="1200" height="1273" loading="lazy" decoding="async"
+                 alt="Foundery USA’s redesigned landing page hero and founder playbook articles, on a tilted blue tile">
+          </div>
+          <div class="case-info">
+            <h3>Foundery USA: Helping International Founders Trust a U.S. Company They’ve Just Met</h3>
+            <ul class="tags" aria-label="Project type">
+              <li>Information architecture</li>
+              <li>Landing page redesign</li>
+              <li>Credibility design</li>
+            </ul>
+            <p class="case-read">Reading time: ~5 min (1,086 words)</p>
+            <span class="case-cta">Read case study <span class="arr" aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card case-soon" aria-labelledby="soon-title">
+        <div class="case-thumb soon-thumb">
+          <div class="soon-tile" aria-hidden="true"></div>
+          <div class="soon-inner">
+            <div class="wip-bar" role="img" aria-label="Page in progress, about 70% done"><span></span></div>
+            <p class="wip-label"><i></i>In progress</p>
+          </div>
+        </div>
+        <div class="case-info">
+          <h3 id="soon-title">More case studies are <em>in progress</em>.</h3>
+          <p class="case-read">Check back soon.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <!-- ============ ABOUT ============ -->
-  <section class="view about" id="about-view" aria-labelledby="about-title" hidden>
+  <section class="view about" id="about" aria-labelledby="about-title">
     <div class="about-intro">
       <div class="about-copy">
         <p class="eyebrow">A little about me</p>
@@ -148,7 +251,7 @@
             <p>Worked on collaborative software projects, taking part in planning, development and design. Began exploring user interface design and prototyping.</p></article></li>
         <li class="tl-item"><span class="tl-year">2024</span>
           <article class="tl-card"><h3>Building design experience</h3><div class="tl-meta">UI/UX Projects</div>
-            <p>Worked on projects involving user flows, wireframes, Figma prototypes and usability testing. Also took on Scrum Master responsibilities in academic teams.</p><a class="tl-more" href="#work">Find out more →</a></article></li>
+            <p>Worked on projects involving user flows, wireframes, Figma prototypes and usability testing. Also took on Scrum Master responsibilities in academic teams.</p><a class="tl-more" href="#work">Find out more <span class="arr" aria-hidden="true">→</span></a></article></li>
         <li class="tl-item"><span class="tl-year">2025</span>
           <article class="tl-card"><h3>Graduated</h3><div class="tl-meta">BSc (Hons) Computing · Coventry University</div>
             <p>Completed my undergraduate degree and continued developing my interest in UI/UX and product design.</p></article></li>
