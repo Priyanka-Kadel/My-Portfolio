@@ -107,14 +107,15 @@ a { color: inherit; }
 .q-in:hover { background: var(--accent); }
 .q-in svg { width: 18px; height: 18px; }
 .q-cv {
-  padding: 0 18px 0 15px; background: var(--accent); color: var(--ink);
+  padding: 0 17px 0 16px; background: var(--accent); color: var(--ink);
   font-family: var(--mono); font-weight: 700; font-size: 12px;
   letter-spacing: 0.1em; text-transform: uppercase;
 }
 .q-cv:hover { background: var(--accent-deep); }
-.q-cv svg { width: 16px; height: 16px; flex: none; }
+.q-cv { gap: 7px; }
+.q-cv svg { width: 13px; height: 13px; flex: none; transform: translateY(-0.5px); }
 /* letter-spacing also adds space after the last letter; pull it back so the label sits centred */
-.q-cv .q-label { margin-right: -0.1em; }
+.q-cv .q-label { margin-right: -0.1em; transform: translateY(0.5px); }
 .toast {
   position: absolute; top: calc(100% + 8px); right: 0; white-space: nowrap;
   background: var(--ink); color: var(--bg);
